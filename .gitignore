@@ -1,0 +1,11 @@
+#IDE files
+.idea
+.settings
+target
+bin
+*.iml
+
+#java files
+.project
+.classpath
+dependency-reduced-pom.xml
