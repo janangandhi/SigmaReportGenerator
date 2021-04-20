@@ -1,4 +1,4 @@
-package com.scu;
+package com.scu.srg;
 
 import static org.junit.Assert.assertTrue;
 
