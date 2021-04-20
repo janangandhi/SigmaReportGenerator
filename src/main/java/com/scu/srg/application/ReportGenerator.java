@@ -23,10 +23,8 @@ public class ReportGenerator {
 
     public void doSomething() {
         TextFileReader reader = new TextFileReader();
-
-        String filename = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-
-        reader.readInput("/Users/janangandhi/IdeaProjects/SigmaReportGenerator/src/main/resources/ReportData.txt");
+        String filename = rootPath + fileProps.getProperty("fileName");
+        reader.readInput(filename);
     }
 
     private void loadProperties() {
