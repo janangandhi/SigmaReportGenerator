@@ -1,5 +1,7 @@
 package com.scu.srg.model;
 
-enum EmployeeType {
+public enum EmployeeType {
     STAFF, CONTRACT;
 }
+
+

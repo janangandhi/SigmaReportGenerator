@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 public class Project {
-    String name;
+    String id;
     List<Task> tasks;
     ProjectStatus status;
 

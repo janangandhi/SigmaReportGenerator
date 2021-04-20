@@ -1,15 +1,21 @@
 package com.scu.srg.model;
 
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.time.LocalDate;
 
 @Getter
+@Setter
+@ToString
 public class TextRow {
     String task;
-    String projectName;
-    String projectStartDate;
-    String projectEndDate;
+    String projectId;
+    LocalDate projectStartDate;
+    LocalDate projectEndDate;
     String employeeName;
     String employeeEmail;
-    String employeeType;
-    String projectStatus;
+    EmployeeType employeeType;
+    ProjectStatus projectStatus;
 }
