@@ -1,5 +1,6 @@
-package com.scu.application;
+package com.scu.srg.application;
 
+import com.scu.srg.reader.TextFileReader;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -18,6 +19,12 @@ public class ReportGenerator {
     public ReportGenerator() {
         loadProperties();
         fileProps.forEach((key, value) -> logger.debug("Key : " + key + ", Value : " + value));
+    }
+
+    public void doSomething() {
+        TextFileReader reader = new TextFileReader();
+        String filename = rootPath + fileProps.getProperty("fileName");
+        reader.readInput(filename);
     }
 
     private void loadProperties() {
