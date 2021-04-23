@@ -9,9 +9,9 @@ public class Employee {
     String email;
     EmployeeType status;
 
-    public Employee(String name, String email, String status) {
+    public Employee(String name, String email, EmployeeType status) {
         this.name = name;
         this.email = email;
-        this.status = EmployeeType.valueOf(status.toUpperCase());
+        this.status = status;
     }
 }

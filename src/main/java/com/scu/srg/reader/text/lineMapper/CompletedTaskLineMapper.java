@@ -1,6 +1,7 @@
 package com.scu.srg.reader.text.lineMapper;
 
 import com.scu.srg.model.TextRow;
+import com.scu.srg.model.TextRowType;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -15,11 +16,12 @@ public class CompletedTaskLineMapper implements LineMapper {
     public TextRow mapLine(String[] lineFields) {
         logger.debug("Line type: Completed Task Details");
         TextRow mappedLine = new TextRow();
+        mappedLine.setType(TextRowType.COMPLETED_TASK);
         mappedLine.setTask(lineFields[0]);
         mappedLine.setProjectId(lineFields[1]);
-        mappedLine.setProjectStartDate(LocalDate.parse(lineFields[2],
+        mappedLine.setTaskStartDate(LocalDate.parse(lineFields[2],
                 DateTimeFormatter.ofPattern("MM/dd/yyyy")));
-        mappedLine.setProjectEndDate(LocalDate.parse(lineFields[3],
+        mappedLine.setTaskEndDate(LocalDate.parse(lineFields[3],
                 DateTimeFormatter.ofPattern("MM/dd/yyyy")));
         return mappedLine;
     }

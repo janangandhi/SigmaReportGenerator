@@ -1,7 +1,12 @@
 package com.scu.srg.application;
 
+import com.scu.srg.model.ReportData;
 import com.scu.srg.model.TextRow;
+import com.scu.srg.processor.text.TextFileDataMapper;
+import com.scu.srg.processor.text.TextFileDataProcessor;
+import com.scu.srg.processor.text.TextFileProcessor;
 import com.scu.srg.reader.text.TextFileReader;
+import com.scu.srg.writer.text.TextFileWriter;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -24,10 +29,12 @@ public class ReportGenerator {
 
     public void doSomething() {
         TextFileReader reader = new TextFileReader();
+        TextFileProcessor processor = new TextFileProcessor(new TextFileDataProcessor(), new TextFileDataMapper());
+        TextFileWriter writer = new TextFileWriter();
         String filename = rootPath + fileProps.getProperty("fileName");
         List<TextRow> textRows = reader.readInput(filename);
-
-        textRows.forEach(logger::debug);
+        ReportData reportData = processor.processData(textRows);
+        writer.writeReport(reportData);
     }
 
     private void loadProperties() {

@@ -1,15 +1,22 @@
 -A new task
 Task1, ProjABC,03/14/2020
 -A new task
-Task1, ProjXYZ, 04/15/2020
--A new task
 Task2, ProjABC,04/20/2020
 -A completed task
 Task1,ProjABC,03/14/2020,04/14/2020
 -A completed task
 Task2,ProjABC,02/20/2020,04/20/2020
+- Project 2
+-A new task
+Task1, ProjXYZ, 04/15/2020
+-A completed task
+Task1,ProjXYZ,04/15/2020,04/20/2020
 -People assigned to task
 Task1, ProjABC,Mary Jones, mjones@somewhere.com,contract
-Task2, ProjABC, JohnSmith, jsmith@somewhere.com,staff
+Task2, ProjABC, John Smith, jsmith@somewhere.com,staff
+Task1, ProjXYZ, John Smith, jsmith@somewhere.com,contract
+Task1, ProjXYZ, John1 Smith, jsmith@somewhere.com,contract
+Task1, ProjXYZ, John2 Smith, jsmith@somewhere.com,staff
+Task1, ProjXYZ, John3 Smith, jsmith@somewhere.com,staff
 -A canceled project
-ProjXYZ, cancelled
+ProjDEF, cancelled
