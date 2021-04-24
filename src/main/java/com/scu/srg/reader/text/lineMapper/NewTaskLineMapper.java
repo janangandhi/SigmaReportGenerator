@@ -1,7 +1,7 @@
 package com.scu.srg.reader.text.lineMapper;
 
-import com.scu.srg.model.TextRow;
-import com.scu.srg.model.TextRowType;
+import com.scu.srg.model.InputRow;
+import com.scu.srg.model.InputRowType;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -13,10 +13,10 @@ public class NewTaskLineMapper implements LineMapper {
     private static final Logger logger = LogManager.getLogger(NewTaskLineMapper.class);
 
     @Override
-    public TextRow mapLine(String[] lineFields) {
+    public InputRow mapLine(String[] lineFields) {
         logger.debug("Line type: New Task Details");
-        TextRow mappedLine = new TextRow();
-        mappedLine.setType(TextRowType.NEW_TASK);
+        InputRow mappedLine = new InputRow();
+        mappedLine.setType(InputRowType.NEW_TASK);
         mappedLine.setTask(lineFields[0]);
         mappedLine.setProjectId(lineFields[1]);
         mappedLine.setTaskStartDate(LocalDate.parse(lineFields[2],

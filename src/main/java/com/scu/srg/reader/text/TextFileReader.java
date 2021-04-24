@@ -1,6 +1,6 @@
 package com.scu.srg.reader.text;
 
-import com.scu.srg.model.TextRow;
+import com.scu.srg.model.InputRow;
 import com.scu.srg.reader.SigmaReportReader;
 import com.scu.srg.reader.text.lineMapper.LineMapperFactory;
 import org.apache.log4j.LogManager;
@@ -19,15 +19,15 @@ public class TextFileReader implements SigmaReportReader {
     private static final Logger logger = LogManager.getLogger(TextFileReader.class);
 
     @Override
-    public List<TextRow> readInput(String fileName) {
+    public List<InputRow> readInput(String fileName) {
         logger.info("Reading text input!!");
-        List<TextRow> inputDetails = new ArrayList<>();
+        List<InputRow> inputDetails = new ArrayList<>();
         logger.debug("Reading contents from file " + fileName);
 
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
 
             stream.forEach(line -> {
-                TextRow lineDetails = parseLine(line);
+                InputRow lineDetails = parseLine(line);
                 if (lineDetails != null) {
                     inputDetails.add(lineDetails);
                 }
@@ -42,7 +42,7 @@ public class TextFileReader implements SigmaReportReader {
         return inputDetails;
     }
 
-    private TextRow parseLine(String line) {
+    private InputRow parseLine(String line) {
         logger.debug("Parsing line: " + line);
         if (line.charAt(0) == '-') {
             logger.debug("Skipping line as it is a comment");

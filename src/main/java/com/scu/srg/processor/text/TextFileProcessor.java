@@ -2,7 +2,7 @@ package com.scu.srg.processor.text;
 
 import com.scu.srg.model.Project;
 import com.scu.srg.model.ReportData;
-import com.scu.srg.model.TextRow;
+import com.scu.srg.model.InputRow;
 import com.scu.srg.processor.SigmaReportProcessor;
 import com.scu.srg.processor.text.data.TextFileDataMapper;
 import com.scu.srg.processor.text.data.TextFileDataProcessor;
@@ -23,7 +23,7 @@ public class TextFileProcessor implements SigmaReportProcessor {
     }
 
     @Override
-    public ReportData processData(List<TextRow> inputData) {
+    public ReportData processData(List<InputRow> inputData) {
 
         logger.info("Processing text input!!");
 

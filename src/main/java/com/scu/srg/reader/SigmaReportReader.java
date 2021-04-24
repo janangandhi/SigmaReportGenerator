@@ -1,10 +1,10 @@
 package com.scu.srg.reader;
 
-import com.scu.srg.model.TextRow;
+import com.scu.srg.model.InputRow;
 
 import java.util.List;
 
 public interface SigmaReportReader {
 
-    List<TextRow> readInput(String sourceName);
+    List<InputRow> readInput(String sourceName);
 }

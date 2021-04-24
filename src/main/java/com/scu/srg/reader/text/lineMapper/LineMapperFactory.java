@@ -1,6 +1,6 @@
 package com.scu.srg.reader.text.lineMapper;
 
-import com.scu.srg.model.TextRow;
+import com.scu.srg.model.InputRow;
 
 import java.util.HashMap;
 
@@ -16,7 +16,7 @@ public class LineMapperFactory {
         map.put(5, new AssignedEmployeeLineMapper());
     }
 
-    public TextRow mapLine(String[] lineFields) {
+    public InputRow mapLine(String[] lineFields) {
         return map.get(lineFields.length).mapLine(lineFields);
     }
 

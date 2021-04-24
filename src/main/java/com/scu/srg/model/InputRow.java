@@ -9,8 +9,8 @@ import java.time.LocalDate;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class TextRow {
-    TextRowType type;
+public class InputRow {
+    InputRowType type;
     String task;
     String projectId;
     LocalDate taskStartDate;

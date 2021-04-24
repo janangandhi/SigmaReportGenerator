@@ -1,7 +1,7 @@
 package com.scu.srg.builder;
 
 import com.scu.srg.model.ReportData;
-import com.scu.srg.model.TextRow;
+import com.scu.srg.model.InputRow;
 import com.scu.srg.processor.SigmaReportProcessor;
 import com.scu.srg.reader.SigmaReportReader;
 import com.scu.srg.writer.SigmaReportWriter;
@@ -30,8 +30,8 @@ public class SigmaReportBuilder {
     }
 
     public void generateSigmaReport(String fileName) {
-        List<TextRow> textRows = reader.readInput(fileName);
-        ReportData reportData = processor.processData(textRows);
+        List<InputRow> inputRows = reader.readInput(fileName);
+        ReportData reportData = processor.processData(inputRows);
         writer.writeReport(reportData);
     }
 }

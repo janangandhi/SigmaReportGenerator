@@ -1,8 +1,8 @@
 package com.scu.srg.reader.text.lineMapper;
 
 import com.scu.srg.model.EmployeeType;
-import com.scu.srg.model.TextRow;
-import com.scu.srg.model.TextRowType;
+import com.scu.srg.model.InputRow;
+import com.scu.srg.model.InputRowType;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -11,10 +11,10 @@ public class AssignedEmployeeLineMapper implements LineMapper {
     private static final Logger logger = LogManager.getLogger(AssignedEmployeeLineMapper.class);
 
     @Override
-    public TextRow mapLine(String[] lineFields) {
+    public InputRow mapLine(String[] lineFields) {
         logger.debug("Line type: Assigned Employee Details");
-        TextRow mappedLine = new TextRow();
-        mappedLine.setType(TextRowType.ASSIGNED_EMPLOYEE);
+        InputRow mappedLine = new InputRow();
+        mappedLine.setType(InputRowType.ASSIGNED_EMPLOYEE);
         mappedLine.setTask(lineFields[0]);
         mappedLine.setProjectId(lineFields[1]);
         mappedLine.setEmployeeName(lineFields[2]);

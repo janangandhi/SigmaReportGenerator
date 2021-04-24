@@ -23,7 +23,7 @@ public class TextFileDataProcessorTest {
 
     @Test
     public void testParseFileData_WhenCancelledProject() {
-        TextRow cancelledProject = new TextRow(TextRowType.CANCELLED_PROJECT, "", "Proj789", null, null,
+        InputRow cancelledProject = new InputRow(InputRowType.CANCELLED_PROJECT, "", "Proj789", null, null,
                 "", "", null, ProjectStatus.CANCELLED);
 
         List<Project> parsedProjects = processor.parseFileData(Collections.singletonList(cancelledProject));
@@ -37,7 +37,7 @@ public class TextFileDataProcessorTest {
     public void testParseFileData_WhenNewTask() {
         LocalDate startDate = LocalDate.of(2021, 4, 10);
 
-        TextRow newTask = new TextRow(TextRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
+        InputRow newTask = new InputRow(InputRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
                 "", "", null, null);
 
         List<Project> parsedProjects = processor.parseFileData(Collections.singletonList(newTask));
@@ -57,9 +57,9 @@ public class TextFileDataProcessorTest {
         LocalDate endDate = LocalDate.of(2021, 4, 20);
 
 
-        TextRow newTask = new TextRow(TextRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
+        InputRow newTask = new InputRow(InputRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
                 "", "", null, null);
-        TextRow completedTask = new TextRow(TextRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate, endDate,
+        InputRow completedTask = new InputRow(InputRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate, endDate,
                 "", "", null, null);
 
         List<Project> parsedProjects = processor.parseFileData(Arrays.asList(newTask, completedTask));
@@ -84,7 +84,7 @@ public class TextFileDataProcessorTest {
         LocalDate startDate = LocalDate.of(2021, 4, 10);
         LocalDate endDate = LocalDate.of(2021, 4, 20);
 
-        TextRow completedTask = new TextRow(TextRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate, endDate,
+        InputRow completedTask = new InputRow(InputRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate, endDate,
                 "", "", null, null);
 
         List<Project> parsedProjects = processor.parseFileData(Collections.singletonList(completedTask));
@@ -102,14 +102,14 @@ public class TextFileDataProcessorTest {
         LocalDate startDate2 = LocalDate.of(2021, 5, 11);
         LocalDate endDate2 = LocalDate.of(2021, 5, 21);
 
-        TextRow newTask = new TextRow(TextRowType.NEW_TASK, "TaskABC", "Proj123", startDate1, null,
+        InputRow newTask = new InputRow(InputRowType.NEW_TASK, "TaskABC", "Proj123", startDate1, null,
                 "", "", null, null);
-        TextRow completedTask = new TextRow(TextRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate1, endDate1,
+        InputRow completedTask = new InputRow(InputRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate1, endDate1,
                 "", "", null, null);
 
-        TextRow newTask2 = new TextRow(TextRowType.NEW_TASK, "TaskDEF", "Proj123", startDate2, null,
+        InputRow newTask2 = new InputRow(InputRowType.NEW_TASK, "TaskDEF", "Proj123", startDate2, null,
                 "", "", null, null);
-        TextRow completedTask2 = new TextRow(TextRowType.COMPLETED_TASK, "TaskDEF", "Proj123", startDate2, endDate2,
+        InputRow completedTask2 = new InputRow(InputRowType.COMPLETED_TASK, "TaskDEF", "Proj123", startDate2, endDate2,
                 "", "", null, null);
 
         List<Project> parsedProjects = processor.parseFileData(Arrays.asList(newTask, newTask2, completedTask, completedTask2));
@@ -132,11 +132,11 @@ public class TextFileDataProcessorTest {
         LocalDate endDate1 = LocalDate.of(2021, 4, 20);
         LocalDate startDate2 = LocalDate.of(2021, 5, 11);
 
-        TextRow newTask = new TextRow(TextRowType.NEW_TASK, "TaskABC", "Proj123", startDate1, null,
+        InputRow newTask = new InputRow(InputRowType.NEW_TASK, "TaskABC", "Proj123", startDate1, null,
                 "", "", null, null);
-        TextRow completedTask = new TextRow(TextRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate1, endDate1,
+        InputRow completedTask = new InputRow(InputRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate1, endDate1,
                 "", "", null, null);
-        TextRow newTask2 = new TextRow(TextRowType.NEW_TASK, "TaskDEF", "Proj123", startDate2, null,
+        InputRow newTask2 = new InputRow(InputRowType.NEW_TASK, "TaskDEF", "Proj123", startDate2, null,
                 "", "", null, null);
 
         List<Project> parsedProjects = processor.parseFileData(Arrays.asList(newTask, newTask2, completedTask));
@@ -156,11 +156,11 @@ public class TextFileDataProcessorTest {
         LocalDate startDate = LocalDate.of(2021, 4, 10);
         LocalDate endDate = LocalDate.of(2021, 4, 20);
 
-        TextRow newTask = new TextRow(TextRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
+        InputRow newTask = new InputRow(InputRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
                 "", "", null, null);
-        TextRow assignedEmployee1 = new TextRow(TextRowType.ASSIGNED_EMPLOYEE, "TaskABC", "Proj123",
+        InputRow assignedEmployee1 = new InputRow(InputRowType.ASSIGNED_EMPLOYEE, "TaskABC", "Proj123",
                 null, null, "John Doe", "JohnDoe@test.com", EmployeeType.STAFF, null);
-        TextRow assignedEmployee2 = new TextRow(TextRowType.ASSIGNED_EMPLOYEE, "TaskABC", "Proj123",
+        InputRow assignedEmployee2 = new InputRow(InputRowType.ASSIGNED_EMPLOYEE, "TaskABC", "Proj123",
                 null, null, "Jane Doe", "JaneDoe@test.com", EmployeeType.CONTRACT, null);
 
         List<Project> parsedProjects = processor.parseFileData(Arrays.asList(newTask, assignedEmployee1, assignedEmployee2));
@@ -187,25 +187,25 @@ public class TextFileDataProcessorTest {
         LocalDate endDate = LocalDate.of(2021, 4, 20);
 
         //Project 1
-        TextRow project1NewTask = new TextRow(TextRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
+        InputRow project1NewTask = new InputRow(InputRowType.NEW_TASK, "TaskABC", "Proj123", startDate, null,
                 "", "", null, null);
-        TextRow project1CompletedTask = new TextRow(TextRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate, startDate.plusDays(5),
+        InputRow project1CompletedTask = new InputRow(InputRowType.COMPLETED_TASK, "TaskABC", "Proj123", startDate, startDate.plusDays(5),
                 "", "", null, null);
-        TextRow project1NewTask2 = new TextRow(TextRowType.NEW_TASK, "TaskDEF", "Proj123", startDate.plusMonths(1), null,
+        InputRow project1NewTask2 = new InputRow(InputRowType.NEW_TASK, "TaskDEF", "Proj123", startDate.plusMonths(1), null,
                 "", "", null, null);
-        TextRow project1CompletedTask2 = new TextRow(TextRowType.COMPLETED_TASK, "TaskDEF", "Proj123", startDate.plusMonths(1), startDate.plusMonths(1).plusDays(1),
+        InputRow project1CompletedTask2 = new InputRow(InputRowType.COMPLETED_TASK, "TaskDEF", "Proj123", startDate.plusMonths(1), startDate.plusMonths(1).plusDays(1),
                 "", "", null, null);
 
         //Project 2
-        TextRow project2NewTask = new TextRow(TextRowType.NEW_TASK, "TaskGHI", "Proj345", startDate, null,
+        InputRow project2NewTask = new InputRow(InputRowType.NEW_TASK, "TaskGHI", "Proj345", startDate, null,
                 "", "", null, null);
-        TextRow assignedEmployee1 = new TextRow(TextRowType.ASSIGNED_EMPLOYEE, "TaskGHI", "Proj345",
+        InputRow assignedEmployee1 = new InputRow(InputRowType.ASSIGNED_EMPLOYEE, "TaskGHI", "Proj345",
                 null, null, "John Doe", "JohnDoe@test.com", EmployeeType.STAFF, null);
-        TextRow assignedEmployee2 = new TextRow(TextRowType.ASSIGNED_EMPLOYEE, "TaskGHI", "Proj345",
+        InputRow assignedEmployee2 = new InputRow(InputRowType.ASSIGNED_EMPLOYEE, "TaskGHI", "Proj345",
                 null, null, "Jane Doe", "JaneDoe@test.com", EmployeeType.CONTRACT, null);
 
         //Project 3
-        TextRow project3Cancelled = new TextRow(TextRowType.CANCELLED_PROJECT, "", "Proj678", null, null,
+        InputRow project3Cancelled = new InputRow(InputRowType.CANCELLED_PROJECT, "", "Proj678", null, null,
                 "", "", null, null);
 
         List<Project> parsedProjects = processor.parseFileData(Arrays.asList(project1NewTask, project1CompletedTask, project1NewTask2, project1CompletedTask2, project1CompletedTask2,

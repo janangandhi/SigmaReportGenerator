@@ -14,10 +14,10 @@ public class TextFileDataProcessor {
 
     private static final Logger logger = LogManager.getLogger(TextFileDataProcessor.class);
 
-    public List<Project> parseFileData(List<TextRow> inputData) {
+    public List<Project> parseFileData(List<InputRow> inputData) {
         List<Project> projects = new ArrayList<>();
 
-        for (TextRow inputLine : inputData) {
+        for (InputRow inputLine : inputData) {
 
             String projectId = inputLine.getProjectId();
 
@@ -53,7 +53,7 @@ public class TextFileDataProcessor {
         return projects;
     }
 
-    private void appendNewTask(TextRow inputLine, List<Project> projects) {
+    private void appendNewTask(InputRow inputLine, List<Project> projects) {
         Optional<Project> optionalProject = projects.stream()
                 .filter(element -> inputLine.getProjectId().equals(element.getId()))
                 .findAny();
@@ -66,7 +66,7 @@ public class TextFileDataProcessor {
         );
     }
 
-    private void updateTaskToCompleted(TextRow inputLine, List<Project> projects) {
+    private void updateTaskToCompleted(InputRow inputLine, List<Project> projects) {
         Optional<Project> optionalProject = projects.stream()
                 .filter(element -> inputLine.getProjectId().equals(element.getId()))
                 .findAny();
@@ -95,7 +95,7 @@ public class TextFileDataProcessor {
         });
     }
 
-    private void appendEmployeesToTask(TextRow inputLine, List<Project> projects) {
+    private void appendEmployeesToTask(InputRow inputLine, List<Project> projects) {
         Optional<Project> optionalProject = projects.stream()
                 .filter(element -> inputLine.getProjectId().equals(element.getId()))
                 .findAny();
