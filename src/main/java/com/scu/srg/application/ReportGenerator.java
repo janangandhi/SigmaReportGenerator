@@ -1,6 +1,6 @@
 package com.scu.srg.application;
 
-import com.scu.srg.factory.SigmaReportBuilder;
+import com.scu.srg.builder.SigmaReportBuilder;
 import com.scu.srg.factory.SigmaReportFactory;
 import com.scu.srg.factory.SigmaReportFactoryGenerator;
 import org.apache.log4j.LogManager;

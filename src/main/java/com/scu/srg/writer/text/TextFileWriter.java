@@ -15,12 +15,13 @@ public class TextFileWriter implements SigmaReportWriter {
 
     @Override
     public void writeReport(ReportData reportData) {
+        logger.info("Writing report in Text file!!");
         String fileData = fileData(reportData);
 
         try {
             Files.write(Paths.get("ReportData-Output.txt"), fileData.getBytes());
         } catch (Exception e) {
-            logger.debug("Error in writing file details: " + e.getMessage());
+            logger.error("Error in writing file details: " + e.getMessage());
         }
     }
 

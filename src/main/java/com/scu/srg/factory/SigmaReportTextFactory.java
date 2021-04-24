@@ -1,15 +1,26 @@
 package com.scu.srg.factory;
 
 import com.scu.srg.processor.SigmaReportProcessor;
-import com.scu.srg.processor.text.TextFileDataMapper;
-import com.scu.srg.processor.text.TextFileDataProcessor;
+import com.scu.srg.processor.text.data.TextFileDataMapper;
+import com.scu.srg.processor.text.data.TextFileDataProcessor;
 import com.scu.srg.processor.text.TextFileProcessor;
 import com.scu.srg.reader.SigmaReportReader;
 import com.scu.srg.reader.text.TextFileReader;
 import com.scu.srg.writer.SigmaReportWriter;
 import com.scu.srg.writer.text.TextFileWriter;
 
-public class SigmaReportTextFactory implements SigmaReportFactory {
+public final class SigmaReportTextFactory implements SigmaReportFactory {
+
+    private static SigmaReportTextFactory instance;
+
+    private SigmaReportTextFactory(){}
+
+    public static SigmaReportTextFactory getInstance() {
+        if (instance == null) {
+            instance = new SigmaReportTextFactory();
+        }
+        return instance;
+    }
 
     public SigmaReportReader getSigmaReportReader() {
         return new TextFileReader();

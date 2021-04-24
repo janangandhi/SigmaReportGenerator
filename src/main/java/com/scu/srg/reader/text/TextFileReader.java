@@ -20,6 +20,7 @@ public class TextFileReader implements SigmaReportReader {
 
     @Override
     public List<TextRow> readInput(String fileName) {
+        logger.info("Reading text input!!");
         List<TextRow> inputDetails = new ArrayList<>();
         logger.debug("Reading contents from file " + fileName);
 

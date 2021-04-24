@@ -1,4 +1,4 @@
-package com.scu.srg.factory;
+package com.scu.srg.builder;
 
 import com.scu.srg.model.ReportData;
 import com.scu.srg.model.TextRow;

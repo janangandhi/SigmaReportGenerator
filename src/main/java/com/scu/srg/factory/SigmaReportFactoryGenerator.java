@@ -1,17 +1,22 @@
 package com.scu.srg.factory;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import java.util.HashMap;
 
 public final class SigmaReportFactoryGenerator {
 
     private static SigmaReportFactoryGenerator instance;
-    private HashMap<String, SigmaReportFactory> map;
+    private final HashMap<String, SigmaReportFactory> map;
+
+    private static final Logger logger = LogManager.getLogger(SigmaReportFactoryGenerator.class);
 
     private SigmaReportFactoryGenerator() {
         map = new HashMap<>();
-        map.put("TEXT", new SigmaReportTextFactory());
-        map.put("XML", new SigmaReportTextFactory());
-        map.put("RDBMS", new SigmaReportTextFactory());
+        map.put("TEXT", SigmaReportTextFactory.getInstance());
+        map.put("XML", SigmaReportXMLFactory.getInstance());
+        map.put("DATABASE", SigmaReportDatabaseFactory.getInstance());
     }
 
     public static SigmaReportFactoryGenerator getInstance() {
@@ -25,7 +30,8 @@ public final class SigmaReportFactoryGenerator {
         SigmaReportFactory factory = map.get(type.toUpperCase());
 
         if (factory == null) {
-            factory = new SigmaReportTextFactory();
+            logger.warn("Type "+type+" not supported. Defaulting to text factory.");
+            factory = SigmaReportTextFactory.getInstance();
         }
         return factory;
     }

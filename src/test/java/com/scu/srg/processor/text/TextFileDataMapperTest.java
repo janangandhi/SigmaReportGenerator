@@ -1,6 +1,7 @@
 package com.scu.srg.processor.text;
 
 import com.scu.srg.model.*;
+import com.scu.srg.processor.text.data.TextFileDataMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

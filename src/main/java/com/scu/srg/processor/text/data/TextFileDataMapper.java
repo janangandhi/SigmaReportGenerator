@@ -1,4 +1,4 @@
-package com.scu.srg.processor.text;
+package com.scu.srg.processor.text.data;
 
 import com.scu.srg.model.*;
 
