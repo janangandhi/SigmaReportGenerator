@@ -16,24 +16,47 @@ public class Task {
     List<Employee> assignees;
     TaskStatus status;
 
-
-    public Task(String taskId) {
-        this.Id = taskId;
+    public Task(TaskBuilder tb) {
+        this.Id = tb.id;
+        this.startDate = tb.startDate;
+        this.endDate = tb.endDate;
+        this.status = tb.status;
+        this.assignees = tb.assignees;
         assignees = new ArrayList<>();
     }
 
-    public Task(String taskId, LocalDate taskStartDate) {
-        this.Id = taskId;
-        this.startDate = taskStartDate;
-        assignees = new ArrayList<>();
-        this.status = TaskStatus.IN_PROGRESS;
-    }
+    public static class TaskBuilder {
 
-    public Task(String taskId, LocalDate taskStartDate, LocalDate taskEndDate) {
-        this.Id = taskId;
-        assignees = new ArrayList<>();
-        this.startDate = taskStartDate;
-        this.endDate = taskEndDate;
-        this.status = TaskStatus.COMPLETED;
+        private final String id;
+        private LocalDate startDate;
+        private LocalDate endDate;
+        private TaskStatus status;
+        private List<Employee> assignees;
+
+
+        public TaskBuilder(String id) {
+            this.id = id;
+            this.status = TaskStatus.IN_PROGRESS;
+        }
+
+        public TaskBuilder taskStartsAt(LocalDate startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public TaskBuilder hasAssignedEmployees(List<Employee> assignees) {
+            this.assignees = assignees;
+            return this;
+        }
+
+        public TaskBuilder taskEndsAt(LocalDate endDate) {
+            this.endDate = endDate;
+            this.status = TaskStatus.COMPLETED;
+            return this;
+        }
+
+        public Task build() {
+            return new Task(this);
+        }
     }
 }

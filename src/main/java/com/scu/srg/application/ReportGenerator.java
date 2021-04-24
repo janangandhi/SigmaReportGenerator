@@ -1,17 +1,12 @@
 package com.scu.srg.application;
 
-import com.scu.srg.model.ReportData;
-import com.scu.srg.model.TextRow;
-import com.scu.srg.processor.text.TextFileDataMapper;
-import com.scu.srg.processor.text.TextFileDataProcessor;
-import com.scu.srg.processor.text.TextFileProcessor;
-import com.scu.srg.reader.text.TextFileReader;
-import com.scu.srg.writer.text.TextFileWriter;
+import com.scu.srg.factory.SigmaReportBuilder;
+import com.scu.srg.factory.SigmaReportFactory;
+import com.scu.srg.factory.SigmaReportFactoryGenerator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
-import java.util.List;
 import java.util.Properties;
 
 public class ReportGenerator {
@@ -27,14 +22,18 @@ public class ReportGenerator {
         loadProperties();
     }
 
-    public void doSomething() {
-        TextFileReader reader = new TextFileReader();
-        TextFileProcessor processor = new TextFileProcessor(new TextFileDataProcessor(), new TextFileDataMapper());
-        TextFileWriter writer = new TextFileWriter();
-        String filename = rootPath + fileProps.getProperty("fileName");
-        List<TextRow> textRows = reader.readInput(filename);
-        ReportData reportData = processor.processData(textRows);
-        writer.writeReport(reportData);
+    public void generateReport() {
+        String fileName = rootPath + fileProps.getProperty("fileName");
+
+        SigmaReportFactory reportFactory = SigmaReportFactoryGenerator.getInstance()
+                .getSigmaReportFactory(fileProps.getProperty("fileType"));
+
+        SigmaReportBuilder builder = new SigmaReportBuilder();
+
+        builder.readWith(reportFactory.getSigmaReportReader())
+                .processWith(reportFactory.getSigmaReportProcessor())
+                .writeWith(reportFactory.getSigmaReportWriter())
+                .generateSigmaReport(fileName);
     }
 
     private void loadProperties() {

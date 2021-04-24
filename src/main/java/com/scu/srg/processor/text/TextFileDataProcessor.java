@@ -58,7 +58,12 @@ public class TextFileDataProcessor {
                 .filter(element -> inputLine.getProjectId().equals(element.getId()))
                 .findAny();
 
-        optionalProject.ifPresent(project -> project.getTasks().add(new Task(inputLine.getTask(), inputLine.getTaskStartDate())));
+        optionalProject.ifPresent(project -> project.getTasks()
+                .add(new Task
+                        .TaskBuilder(inputLine.getTask())
+                        .taskStartsAt(inputLine.getTaskStartDate())
+                        .build())
+        );
     }
 
     private void updateTaskToCompleted(TextRow inputLine, List<Project> projects) {
@@ -72,9 +77,13 @@ public class TextFileDataProcessor {
             for (Task t : project.getTasks()) {
                 if (t.getId().equals(inputLine.getTask())) {
                     logger.debug("Task " + t.getId() + " found in project. Updating status and end date");
-                    t.setEndDate(inputLine.getTaskEndDate());
-                    t.setStatus(TaskStatus.COMPLETED);
-                    project.getTasks().set(taskIndex, t);
+                    Task completeTask = new Task.TaskBuilder(t.getId())
+                            .taskStartsAt(t.getStartDate())
+                            .taskEndsAt(inputLine.getTaskEndDate())
+                            .hasAssignedEmployees(t.getAssignees())
+                            .build();
+
+                    project.getTasks().set(taskIndex, completeTask);
                     foundTask = true;
                     break;
                 }

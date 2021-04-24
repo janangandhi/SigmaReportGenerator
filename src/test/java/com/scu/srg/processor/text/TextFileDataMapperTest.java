@@ -25,7 +25,9 @@ public class TextFileDataMapperTest {
         employeeList.add(new Employee("Jane Doe", "janedoe@test.com", EmployeeType.CONTRACT));
         employeeList.add(new Employee("John Doe", "johndoe@test.com", EmployeeType.STAFF));
         List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task("task1", LocalDate.now()));
+        tasks.add(new Task.TaskBuilder("task1")
+                .taskStartsAt(LocalDate.now())
+                .build());
         tasks.get(0).setAssignees(employeeList);
         Project proj1 = new Project("Proj1");
         proj1.setStartDate(LocalDate.now());
@@ -34,7 +36,10 @@ public class TextFileDataMapperTest {
         proj1.setTasks(tasks);
 
         List<Task> tasks2 = new ArrayList<>();
-        tasks2.add(new Task("task2", LocalDate.now(), LocalDate.now().plusDays(1)));
+        tasks2.add(new Task.TaskBuilder("task2")
+                .taskStartsAt(LocalDate.now())
+                .taskEndsAt(LocalDate.now().plusDays(1))
+                .build());
         Project proj2 = new Project("Proj2");
         proj2.setTasks(tasks2);
 

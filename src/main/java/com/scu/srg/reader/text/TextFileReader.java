@@ -1,6 +1,7 @@
 package com.scu.srg.reader.text;
 
 import com.scu.srg.model.TextRow;
+import com.scu.srg.reader.SigmaReportReader;
 import com.scu.srg.reader.text.lineMapper.LineMapperFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -13,10 +14,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class TextFileReader {
+public class TextFileReader implements SigmaReportReader {
 
     private static final Logger logger = LogManager.getLogger(TextFileReader.class);
 
+    @Override
     public List<TextRow> readInput(String fileName) {
         List<TextRow> inputDetails = new ArrayList<>();
         logger.debug("Reading contents from file " + fileName);
