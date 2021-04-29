@@ -9,14 +9,11 @@ import com.scu.srg.writer.database.DatabaseWriter;
 
 public class SigmaReportDatabaseFactory implements SigmaReportFactory{
 
-    private static SigmaReportDatabaseFactory instance;
+    private static final SigmaReportDatabaseFactory instance = new SigmaReportDatabaseFactory();
 
     private SigmaReportDatabaseFactory(){}
 
     public static SigmaReportDatabaseFactory getInstance() {
-        if (instance == null) {
-            instance = new SigmaReportDatabaseFactory();
-        }
         return instance;
     }
 

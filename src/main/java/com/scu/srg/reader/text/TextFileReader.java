@@ -1,5 +1,6 @@
 package com.scu.srg.reader.text;
 
+import com.scu.srg.exception.BusinessException;
 import com.scu.srg.model.InputRow;
 import com.scu.srg.reader.SigmaReportReader;
 import com.scu.srg.reader.text.lineMapper.LineMapperFactory;
@@ -27,7 +28,12 @@ public class TextFileReader implements SigmaReportReader {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
 
             stream.forEach(line -> {
-                InputRow lineDetails = parseLine(line);
+                InputRow lineDetails = null;
+                try {
+                    lineDetails = parseLine(line);
+                } catch (BusinessException businessException) {
+                    logger.error("Error in reading line. Skipping and moving to next line.");
+                }
                 if (lineDetails != null) {
                     inputDetails.add(lineDetails);
                 }
@@ -42,7 +48,7 @@ public class TextFileReader implements SigmaReportReader {
         return inputDetails;
     }
 
-    private InputRow parseLine(String line) {
+    private InputRow parseLine(String line) throws BusinessException {
         logger.debug("Parsing line: " + line);
         if (line.charAt(0) == '-') {
             logger.debug("Skipping line as it is a comment");
@@ -52,8 +58,7 @@ public class TextFileReader implements SigmaReportReader {
         String[] lineFields = line.split(",");
 
         if (lineFields.length < 2 || lineFields.length > 5) {
-            logger.warn("Invalid number of fields in the line. Skipping line");
-            return null;
+            throw new BusinessException("Invalid separators in the file for line : "+ line);
         }
 
         lineFields = Arrays.stream(lineFields).map(String::trim).toArray(String[]::new);

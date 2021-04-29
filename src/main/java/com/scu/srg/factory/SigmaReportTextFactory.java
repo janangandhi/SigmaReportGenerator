@@ -11,14 +11,11 @@ import com.scu.srg.writer.text.TextFileWriter;
 
 public final class SigmaReportTextFactory implements SigmaReportFactory {
 
-    private static SigmaReportTextFactory instance;
+    private static final SigmaReportTextFactory instance = new SigmaReportTextFactory();
 
     private SigmaReportTextFactory(){}
 
     public static SigmaReportTextFactory getInstance() {
-        if (instance == null) {
-            instance = new SigmaReportTextFactory();
-        }
         return instance;
     }
 

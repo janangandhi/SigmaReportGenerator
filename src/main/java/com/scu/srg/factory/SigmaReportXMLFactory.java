@@ -9,14 +9,11 @@ import com.scu.srg.writer.xml.XMLFileWriter;
 
 public final class SigmaReportXMLFactory implements SigmaReportFactory{
 
-    private static SigmaReportXMLFactory instance;
+    private static final SigmaReportXMLFactory instance = new SigmaReportXMLFactory();
 
     private SigmaReportXMLFactory(){}
 
     public static SigmaReportXMLFactory getInstance() {
-        if (instance == null) {
-            instance = new SigmaReportXMLFactory();
-        }
         return instance;
     }
 

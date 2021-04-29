@@ -8,7 +8,7 @@ import com.scu.srg.writer.SigmaReportWriter;
 
 import java.util.List;
 
-public class SigmaReportBuilder {
+public class SigmaReportBuilder implements SigmaReportBuilderInterface{
 
     private SigmaReportReader reader;
     private SigmaReportProcessor processor;

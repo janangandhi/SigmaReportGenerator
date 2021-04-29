@@ -1,6 +1,7 @@
 package com.scu.srg.application;
 
 import com.scu.srg.builder.SigmaReportBuilder;
+import com.scu.srg.builder.SigmaReportBuilderInterface;
 import com.scu.srg.factory.SigmaReportFactory;
 import com.scu.srg.factory.SigmaReportFactoryGenerator;
 import org.apache.log4j.LogManager;
@@ -15,11 +16,13 @@ public class ReportGenerator {
 
     String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
     String propFilePath = rootPath + "app.properties";
+    private final SigmaReportBuilderInterface builder;
 
     Properties fileProps;
 
-    public ReportGenerator() {
+    public ReportGenerator(SigmaReportBuilderInterface builder) {
         loadProperties();
+        this.builder = builder;
     }
 
     public void generateReport() {
@@ -28,13 +31,17 @@ public class ReportGenerator {
         SigmaReportFactory reportFactory = SigmaReportFactoryGenerator.getInstance()
                 .getSigmaReportFactory(fileProps.getProperty("fileType"));
 
-        SigmaReportBuilder builder = new SigmaReportBuilder();
+        createReport(reportFactory, fileName);
+    }
 
+    public void createReport(SigmaReportFactory reportFactory, String fileName) {
         builder.readWith(reportFactory.getSigmaReportReader())
                 .processWith(reportFactory.getSigmaReportProcessor())
                 .writeWith(reportFactory.getSigmaReportWriter())
                 .generateSigmaReport(fileName);
     }
+
+
 
     private void loadProperties() {
         fileProps = new Properties();
