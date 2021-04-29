@@ -20,7 +20,7 @@ public final class SigmaReportTextFactory implements SigmaReportFactory {
     }
 
     public SigmaReportReader getSigmaReportReader() {
-        return new TextFileReader();
+        return new TextFileReader(new TextLineMapperFactory());
     }
 
     public SigmaReportProcessor getSigmaReportProcessor() {

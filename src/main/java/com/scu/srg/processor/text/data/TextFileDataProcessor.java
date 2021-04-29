@@ -14,8 +14,10 @@ public class TextFileDataProcessor {
 
     private static final Logger logger = LogManager.getLogger(TextFileDataProcessor.class);
 
+    List<Project> projects;
+
     public List<Project> parseFileData(List<InputRow> inputData) {
-        List<Project> projects = new ArrayList<>();
+        projects = new ArrayList<>();
 
         for (InputRow inputLine : inputData) {
 
@@ -30,30 +32,30 @@ public class TextFileDataProcessor {
             switch (inputLine.getType()) {
                 case NEW_TASK:
                     logger.debug("Appending new task to project");
-                    appendNewTask(inputLine, projects);
+                    appendNewTask(inputLine);
                     break;
                 case COMPLETED_TASK:
                     logger.debug("Updating task " + inputLine.getTask() + " to complete");
-                    updateTaskToCompleted(inputLine, projects);
+                    updateTaskToCompleted(inputLine);
                     break;
                 case ASSIGNED_EMPLOYEE:
                     logger.debug("Appending assigned employee to task");
-                    appendEmployeesToTask(inputLine, projects);
+                    appendEmployeesToTask(inputLine);
                     break;
                 case CANCELLED_PROJECT:
                     logger.debug("Updating project status to cancelled for Project " + projectId);
-                    projects = updateCancelledProject(projectId, projects);
+                    projects = updateCancelledProject(projectId);
                     break;
             }
 
         }
 
-        updateProjectDetails(projects);
+        updateProjectDetails();
 
         return projects;
     }
 
-    private void appendNewTask(InputRow inputLine, List<Project> projects) {
+    private void appendNewTask(InputRow inputLine) {
         Optional<Project> optionalProject = projects.stream()
                 .filter(element -> inputLine.getProjectId().equals(element.getId()))
                 .findAny();
@@ -66,7 +68,7 @@ public class TextFileDataProcessor {
         );
     }
 
-    private void updateTaskToCompleted(InputRow inputLine, List<Project> projects) {
+    private void updateTaskToCompleted(InputRow inputLine) {
         Optional<Project> optionalProject = projects.stream()
                 .filter(element -> inputLine.getProjectId().equals(element.getId()))
                 .findAny();
@@ -95,7 +97,7 @@ public class TextFileDataProcessor {
         });
     }
 
-    private void appendEmployeesToTask(InputRow inputLine, List<Project> projects) {
+    private void appendEmployeesToTask(InputRow inputLine) {
         Optional<Project> optionalProject = projects.stream()
                 .filter(element -> inputLine.getProjectId().equals(element.getId()))
                 .findAny();
@@ -113,7 +115,7 @@ public class TextFileDataProcessor {
 
     }
 
-    private List<Project> updateCancelledProject(String projectId, List<Project> projects) {
+    private List<Project> updateCancelledProject(String projectId) {
         return projects.stream().peek(project -> {
             if (project.getId().equals(projectId)) {
                 project.setProjectStatus(ProjectStatus.CANCELLED);
@@ -121,7 +123,7 @@ public class TextFileDataProcessor {
         }).collect(Collectors.toList());
     }
 
-    private void updateProjectDetails(List<Project> projects) {
+    private void updateProjectDetails() {
         for (Project proj : projects) {
             logger.debug("Evaluating and updating project details for Project " + proj.getId());
 

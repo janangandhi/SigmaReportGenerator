@@ -1,9 +1,10 @@
 package com.scu.srg.reader.text;
 
 import com.scu.srg.exception.BusinessException;
+import com.scu.srg.factory.LineMapperFactory;
 import com.scu.srg.model.InputRow;
 import com.scu.srg.reader.SigmaReportReader;
-import com.scu.srg.reader.text.lineMapper.LineMapperFactory;
+import com.scu.srg.factory.TextLineMapperFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -18,6 +19,12 @@ import java.util.stream.Stream;
 public class TextFileReader implements SigmaReportReader {
 
     private static final Logger logger = LogManager.getLogger(TextFileReader.class);
+
+    private final LineMapperFactory mapperFactory;
+
+    public TextFileReader(LineMapperFactory mapperFactory) {
+        this.mapperFactory = mapperFactory;
+    }
 
     @Override
     public List<InputRow> readInput(String fileName) {
@@ -63,7 +70,7 @@ public class TextFileReader implements SigmaReportReader {
 
         lineFields = Arrays.stream(lineFields).map(String::trim).toArray(String[]::new);
 
-        return new LineMapperFactory().mapLine(lineFields);
+        return mapperFactory.getLineMapper(lineFields.length).mapLine(lineFields);
     }
 
 }

@@ -24,7 +24,7 @@ public final class SigmaReportFactoryGenerator {
         return instance;
     }
 
-    public SigmaReportFactory getSigmaReportFactory(String type) {
+    public SigmaReportFactory getReportFactory(String type) {
         SigmaReportFactory factory = map.get(type.toUpperCase());
 
         if (factory == null) {
