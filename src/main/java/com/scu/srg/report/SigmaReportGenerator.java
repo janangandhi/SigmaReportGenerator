@@ -18,17 +18,17 @@ public class SigmaReportGenerator implements ReportGenerator {
 
     public void generateReport(SigmaReportFactory reportFactory) {
 
-        String filePath = Properties.getInstance().getRootPath() +
+        String inputFilePath = Properties.getInstance().getRootPath() +
                 Properties.getInstance().getProperty(Constants.FILENAME_PROPERTY);
 
-        logger.info("Generating report for file " + filePath);
+        logger.info("Generating report for file " + inputFilePath);
 
         SigmaReport sigmaReport = builder.readWith(reportFactory.getSigmaReportReader())
                 .processWith(reportFactory.getSigmaReportProcessor())
                 .writeWith(reportFactory.getSigmaReportWriter())
                 .build();
 
-        sigmaReport.generateSigmaReport(filePath);
+        sigmaReport.create(inputFilePath);
 
         logger.info("Report generated successfully!");
     }
