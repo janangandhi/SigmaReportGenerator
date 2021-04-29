@@ -1,8 +1,8 @@
 package com.scu.srg.processor.text;
 
+import com.scu.srg.model.InputRow;
 import com.scu.srg.model.Project;
 import com.scu.srg.model.ReportData;
-import com.scu.srg.model.InputRow;
 import com.scu.srg.processor.SigmaReportProcessor;
 import com.scu.srg.processor.text.data.TextFileDataMapper;
 import com.scu.srg.processor.text.data.TextFileDataProcessor;

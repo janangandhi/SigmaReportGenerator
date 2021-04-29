@@ -1,8 +1,8 @@
 package com.scu.srg.reader.text.lineMapper;
 
-import com.scu.srg.model.ProjectStatus;
 import com.scu.srg.model.InputRow;
 import com.scu.srg.model.InputRowType;
+import com.scu.srg.model.ProjectStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

@@ -7,11 +7,12 @@ import com.scu.srg.reader.xml.XMLFileReader;
 import com.scu.srg.writer.SigmaReportWriter;
 import com.scu.srg.writer.xml.XMLFileWriter;
 
-public final class SigmaReportXMLFactory implements SigmaReportFactory{
+public final class SigmaReportXMLFactory implements SigmaReportFactory {
 
     private static final SigmaReportXMLFactory instance = new SigmaReportXMLFactory();
 
-    private SigmaReportXMLFactory(){}
+    private SigmaReportXMLFactory() {
+    }
 
     public static SigmaReportXMLFactory getInstance() {
         return instance;

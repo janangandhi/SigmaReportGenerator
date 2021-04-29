@@ -7,11 +7,12 @@ import com.scu.srg.reader.database.DatabaseReader;
 import com.scu.srg.writer.SigmaReportWriter;
 import com.scu.srg.writer.database.DatabaseWriter;
 
-public class SigmaReportDatabaseFactory implements SigmaReportFactory{
+public class SigmaReportDatabaseFactory implements SigmaReportFactory {
 
     private static final SigmaReportDatabaseFactory instance = new SigmaReportDatabaseFactory();
 
-    private SigmaReportDatabaseFactory(){}
+    private SigmaReportDatabaseFactory() {
+    }
 
     public static SigmaReportDatabaseFactory getInstance() {
         return instance;

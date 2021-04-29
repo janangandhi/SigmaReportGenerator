@@ -10,6 +10,7 @@ public class Constants {
     public static final String DATABASE = "DATABASE";
 
 
-    private Constants(){}
+    private Constants() {
+    }
 
 }

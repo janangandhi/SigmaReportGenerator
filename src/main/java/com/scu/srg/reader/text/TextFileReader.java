@@ -4,7 +4,6 @@ import com.scu.srg.exception.BusinessException;
 import com.scu.srg.factory.LineMapperFactory;
 import com.scu.srg.model.InputRow;
 import com.scu.srg.reader.SigmaReportReader;
-import com.scu.srg.factory.TextLineMapperFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -65,7 +64,7 @@ public class TextFileReader implements SigmaReportReader {
         String[] lineFields = line.split(",");
 
         if (lineFields.length < 2 || lineFields.length > 5) {
-            throw new BusinessException("Invalid separators in the file for line : "+ line);
+            throw new BusinessException("Invalid separators in the file for line : " + line);
         }
 
         lineFields = Arrays.stream(lineFields).map(String::trim).toArray(String[]::new);

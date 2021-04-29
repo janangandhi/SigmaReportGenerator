@@ -1,4 +1,4 @@
-package com.scu.srg.application;
+package com.scu.srg.report;
 
 import com.scu.srg.factory.SigmaReportFactory;
 

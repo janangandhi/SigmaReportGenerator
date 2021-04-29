@@ -7,13 +7,9 @@ public class BusinessException extends Exception {
 
     private static final Logger logger = LogManager.getLogger(BusinessException.class);
 
-    public BusinessException() {
-        super();
-    }
-
     public BusinessException(String message) {
         super(message);
-        logger.error("Business Exception occured: "+ message);
+        logger.error("Business Exception occurred: " + message);
     }
 
     @Override

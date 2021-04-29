@@ -28,7 +28,7 @@ public final class SigmaReportFactoryGenerator {
         SigmaReportFactory factory = map.get(type.toUpperCase());
 
         if (factory == null) {
-            logger.warn("Type "+type+" not supported. Defaulting to text factory.");
+            logger.warn("Type " + type + " not supported. Defaulting to text factory.");
             factory = SigmaReportTextFactory.getInstance();
         }
         return factory;

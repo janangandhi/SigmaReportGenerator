@@ -1,6 +1,5 @@
-package com.scu.srg.application;
+package com.scu.srg.report;
 
-import com.scu.srg.builder.SigmaReportBuilderInterface;
 import com.scu.srg.constant.Constants;
 import com.scu.srg.constant.Properties;
 import com.scu.srg.factory.SigmaReportFactory;
@@ -11,23 +10,25 @@ public class SigmaReportGenerator implements ReportGenerator {
 
     private static final Logger logger = LogManager.getLogger(SigmaReportGenerator.class);
 
-    private final SigmaReportBuilderInterface builder;
+    private final ReportBuilder builder;
 
-    public SigmaReportGenerator(SigmaReportBuilderInterface builder) {
+    public SigmaReportGenerator(ReportBuilder builder) {
         this.builder = builder;
     }
 
     public void generateReport(SigmaReportFactory reportFactory) {
 
-        String filePath  = Properties.getInstance().getRootPath() +
+        String filePath = Properties.getInstance().getRootPath() +
                 Properties.getInstance().getProperty(Constants.FILENAME_PROPERTY);
 
-        logger.info("Generating report for file "+ filePath);
+        logger.info("Generating report for file " + filePath);
 
-        builder.readWith(reportFactory.getSigmaReportReader())
+        SigmaReport sigmaReport = builder.readWith(reportFactory.getSigmaReportReader())
                 .processWith(reportFactory.getSigmaReportProcessor())
                 .writeWith(reportFactory.getSigmaReportWriter())
-                .generateSigmaReport(filePath);
+                .build();
+
+        sigmaReport.generateSigmaReport(filePath);
 
         logger.info("Report generated successfully!");
     }
