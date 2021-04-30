@@ -21,7 +21,7 @@ public class Task {
         this.startDate = tb.startDate;
         this.endDate = tb.endDate;
         this.status = tb.status;
-        if(tb.assignees != null){
+        if (tb.assignees != null) {
             this.assignees = tb.assignees;
         } else {
             assignees = new ArrayList<>();
