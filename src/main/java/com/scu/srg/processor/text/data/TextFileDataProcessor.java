@@ -61,8 +61,7 @@ public class TextFileDataProcessor {
                 .findAny();
 
         optionalProject.ifPresent(project -> project.getTasks()
-                .add(new Task
-                        .TaskBuilder(inputLine.getTask())
+                .add(new Task.SigmaTaskBuilder(inputLine.getTask())
                         .taskStartsAt(inputLine.getTaskStartDate())
                         .build())
         );
@@ -79,7 +78,7 @@ public class TextFileDataProcessor {
             for (Task t : project.getTasks()) {
                 if (t.getId().equals(inputLine.getTask())) {
                     logger.debug("Task " + t.getId() + " found in project. Updating status and end date");
-                    Task completeTask = new Task.TaskBuilder(t.getId())
+                    Task completeTask = new Task.SigmaTaskBuilder(t.getId())
                             .taskStartsAt(t.getStartDate())
                             .taskEndsAt(inputLine.getTaskEndDate())
                             .hasAssignedEmployees(t.getAssignees())

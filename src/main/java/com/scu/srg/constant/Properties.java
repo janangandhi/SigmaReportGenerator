@@ -14,10 +14,9 @@ public final class Properties {
     private final java.util.Properties fileProps;
 
     String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-    String propFilePath = rootPath + "app.properties";
-
 
     private Properties() {
+        String propFilePath = rootPath + "app.properties";
         fileProps = new java.util.Properties();
         logger.debug("Reading properties from file " + propFilePath);
         try {

@@ -1,0 +1,42 @@
+No. of Projects Canceled: 1
+
+No. of Projects Completed: 2
+
+No. of Projects Active: 1
+
+<-------------------- Completed Project Details -------------------->
+
+<---------------------------------------------->
+
+Project Id: ProjABC
+
+No. of Tasks: 2
+
+Start Date: 2020-03-14
+
+Completed Date: 2020-05-20
+
+No. of Staff: 1
+
+No. of Contract: 1
+
+List of Employees: Mary Jones, John Smith
+
+<---------------------------------------------->
+<---------------------------------------------->
+
+Project Id: ProjXYZ
+
+No. of Tasks: 1
+
+Start Date: 2020-04-15
+
+Completed Date: 2020-04-20
+
+No. of Staff: 2
+
+No. of Contract: 2
+
+List of Employees: Jack Reacher, Bob Daniels, Kate Cruise, Kiran Shah
+
+<---------------------------------------------->

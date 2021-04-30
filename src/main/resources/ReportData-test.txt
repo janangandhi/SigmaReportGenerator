@@ -1,4 +1,3 @@
----- Project ABC - Completed
 -A new task
 Task1, ProjABC,03/14/2020
 -A new task
@@ -7,23 +6,17 @@ Task2, ProjABC,04/20/2020
 Task1,ProjABC,03/14/2020,04/14/2020
 -A completed task
 Task2,ProjABC,04/20/2020,05/20/2020
--People assigned to task
-Task1, ProjABC,Mary Jones, mjones@somewhere.com,contract
-Task2, ProjABC, John Smith, jsmith@somewhere.com,staff
----- Project XYZ - Completed
+- Project 2
 -A new task
 Task1, ProjXYZ, 04/15/2020
 -A completed task
 Task1,ProjXYZ,04/15/2020,04/20/2020
 -People assigned to task
+Task1, ProjABC,Mary Jones, mjones@somewhere.com,contract
+Task2, ProjABC, John Smith, jsmith@somewhere.com,staff
 Task1, ProjXYZ, Jack Reacher, jreacher@somewhere.com,contract
 Task1, ProjXYZ, Bob Daniels, bdaniels@somewhere.com,contract
 Task1, ProjXYZ, Kate Cruise, kcruise@somewhere.com,staff
 Task1, ProjXYZ, Kiran Shah, kshah@somewhere.com,staff
----- Project DEF - Cancelled
+-A canceled project
 ProjDEF, cancelled
----- Project GHI - Active
--A new task
-Task1, ProjGHI,03/14/2020
--A new task
-Task2, ProjGHI,04/20/2020
