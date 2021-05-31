@@ -1,3 +1,3 @@
 # SigmaReportGenerator
 
-Assignment for COEN 353 - report generator
+Assignment for COEN 359 - report generator
